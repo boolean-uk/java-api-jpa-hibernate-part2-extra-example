@@ -28,7 +28,7 @@ public class Artist {
     @Column
     private boolean stillPerforming;
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"artist"})
     private List<Album> albums;
 
