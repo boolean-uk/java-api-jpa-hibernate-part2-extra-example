@@ -25,7 +25,7 @@ public class RecordCompany {
     @Column
     private String location;
 
-    @OneToMany(mappedBy = "recordCompany", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "recordCompany", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties({"recordCompany"})
     private List<Album> albums;
 
