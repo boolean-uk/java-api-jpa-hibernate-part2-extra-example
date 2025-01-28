@@ -2,7 +2,8 @@ package com.booleanuk.albums;
 
 
 import com.booleanuk.artists.Artist;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.booleanuk.recordcompanies.RecordCompany;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,13 +29,21 @@ public class Album {
 
     @ManyToOne
     @JoinColumn(name = "artist_id")
-    @JsonIgnoreProperties("albums")
+    @JsonIncludeProperties(value = {"name", "stillPerforming"})
     private Artist artist;
-//    private RecordCompany recordCompany;
+
+    @ManyToOne
+    @JoinColumn(name = "record_company_id")
+    @JsonIncludeProperties(value = {"name", "location"})
+    private RecordCompany recordCompany;
 
     public Album(String title, int year, int rating) {
         this.title = title;
         this.year = year;
         this.rating = rating;
+    }
+
+    public Album(int id) {
+        this.id = id;
     }
 }

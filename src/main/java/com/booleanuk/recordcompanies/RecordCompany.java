@@ -1,4 +1,4 @@
-package com.booleanuk.artists;
+package com.booleanuk.recordcompanies;
 
 import com.booleanuk.albums.Album;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,29 +15,26 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "artists")
-public class Artist {
-
+@Table(name = "record_companies")
+public class RecordCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Column
     private String name;
-
     @Column
-    private boolean stillPerforming;
+    private String location;
 
-    @OneToMany(mappedBy = "artist", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties({"artist"})
+    @OneToMany(mappedBy = "recordCompany", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties({"recordCompany"})
     private List<Album> albums;
 
-    public Artist(String name, boolean stillPerforming) {
+    public RecordCompany(String name, String location) {
         this.name = name;
-        this.stillPerforming = stillPerforming;
+        this.location = location;
     }
 
-    public Artist(int id) {
+    public RecordCompany(int id) {
         this.id = id;
     }
 }
